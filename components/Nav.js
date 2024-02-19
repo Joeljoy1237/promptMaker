@@ -39,7 +39,11 @@ const Nav = () => {
               Create Post
             </Link>
 
-            <button type="button" onClick={signOut} className="outline_btn">
+            <button
+              type="button"
+              onClick={() => signOut({ callbackUrl: "/" })}
+              className="outline_btn"
+            >
               Sign Out
             </button>
 
@@ -105,7 +109,7 @@ const Nav = () => {
                   type="button"
                   onClick={() => {
                     setToggleDropdown(false);
-                    signOut();
+                    signOut({ callbackUrl: "/" });
                   }}
                   className="mt-5 w-full black_btn"
                 >
