@@ -12,19 +12,19 @@ const UpdatePrompt = () => {
   const [post, setPost] = useState({ prompt: "", tag: "" });
   const [submitting, setIsSubmitting] = useState(false);
 
-  useEffect(() => {
-    const getPromptDetails = async () => {
-      const response = await fetch(`/api/prompt/${promptId}`);
-      const data = await response.json();
+  // useEffect(() => {
+  //   const getPromptDetails = async () => {
+  //     const response = await fetch(`/api/prompt/${promptId}`);
+  //     const data = await response.json();
 
-      setPost({
-        prompt: data.prompt,
-        tag: data.tag,
-      });
-    };
+  //     setPost({
+  //       prompt: data.prompt,
+  //       tag: data.tag,
+  //     });
+  //   };
 
-    if (promptId) getPromptDetails();
-  }, [promptId]);
+  //   if (promptId) getPromptDetails();
+  // }, [promptId]);
 
   // const updatePromptPost = async (e) => {
   //   e.preventDefault();
