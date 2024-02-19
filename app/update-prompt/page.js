@@ -5,9 +5,9 @@ import { useRouter, useSearchParams } from "next/navigation";
 import Form from "@components/Form";
 
 const UpdatePrompt = () => {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const promptId = searchParams.get("id");
+  // const router = useRouter();
+  // const searchParams = useSearchParams();
+  // const promptId = searchParams.get("id");
 
   const [post, setPost] = useState({ prompt: "", tag: "" });
   const [submitting, setIsSubmitting] = useState(false);
@@ -26,40 +26,39 @@ const UpdatePrompt = () => {
     if (promptId) getPromptDetails();
   }, [promptId]);
 
-  const updatePromptPost = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
+  // const updatePromptPost = async (e) => {
+  //   e.preventDefault();
+  //   setIsSubmitting(true);
 
-    if (!promptId) return alert("Missing PromptId!");
+  //   if (!promptId) return alert("Missing PromptId!");
 
-    try {
-      const response = await fetch(`/api/prompt/${promptId}`, {
-        method: "PATCH",
-        body: JSON.stringify({
-          prompt: post.prompt,
-          tag: post.tag,
-        }),
-      });
+  //   try {
+  //     const response = await fetch(`/api/prompt/${promptId}`, {
+  //       method: "PATCH",
+  //       body: JSON.stringify({
+  //         prompt: post.prompt,
+  //         tag: post.tag,
+  //       }),
+  //     });
 
-      if (response.ok) {
-        router.push("/profile");
-      }
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+  //     if (response.ok) {
+  //       router.push("/profile");
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   } finally {
+  //     setIsSubmitting(false);
+  //   }
+  // };
 
   return (
-    <></>
-    // <Form
-    //   type="Edit"
-    //   post={post}
-    //   setPost={setPost}
-    //   submitting={submitting}
-    //   handleSubmit={updatePromptPost}
-    // />
+    <Form
+      type="Edit"
+      post={post}
+      setPost={setPost}
+      submitting={submitting}
+      handleSubmit={updatePromptPost}
+    />
   );
 };
 
