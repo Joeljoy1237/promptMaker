@@ -1,9 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-
 import Form from "@components/Form";
 
 const UpdatePrompt = () => {
@@ -28,7 +26,7 @@ const UpdatePrompt = () => {
     if (promptId) getPromptDetails();
   }, [promptId]);
 
-  const updatePrompt = async (e) => {
+  const updatePromptPost = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
@@ -44,7 +42,7 @@ const UpdatePrompt = () => {
       });
 
       if (response.ok) {
-        router.push("/");
+        router.push("/profile");
       }
     } catch (error) {
       console.log(error);
@@ -54,15 +52,13 @@ const UpdatePrompt = () => {
   };
 
   return (
-    <Suspense>
-      <Form
-        type="Edit"
-        post={post}
-        setPost={setPost}
-        submitting={submitting}
-        handleSubmit={updatePrompt}
-      />
-    </Suspense>
+    <Form
+      type="Edit"
+      post={post}
+      setPost={setPost}
+      submitting={submitting}
+      handleSubmit={updatePromptPost}
+    />
   );
 };
 
