@@ -16,12 +16,15 @@ const UserProfile = ({ params }) => {
       const response = await fetch(`/api/users/${params?.id}/posts`);
       const data = await response.json();
 
+      console.log(response);
       setUserPosts(data);
     };
 
     if (params?.id) fetchPosts();
   }, [params.id]);
-
+  {
+    console.log(params.id);
+  }
   return (
     <Profile
       name={userName}

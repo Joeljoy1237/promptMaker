@@ -2,14 +2,17 @@
 
 import { useState, useEffect } from "react";
 import PromptCard from "./PromptCard";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
-const PromptCardList = ({ data, handleTagClick }) => {
+const PromptCardList = ({ data, handleProfileclick, handleTagClick }) => {
   return (
     <div className="mt-16 prompt_layout">
       {data.map((post) => (
         <PromptCard
           key={post._id}
           post={post}
+          handleProfileclick={handleProfileclick}
           handleTagClick={handleTagClick}
         />
       ))}
@@ -18,6 +21,7 @@ const PromptCardList = ({ data, handleTagClick }) => {
 };
 
 const Feed = () => {
+  const router = useRouter();
   const [searchText, setSearchText] = useState("");
   const [posts, setPosts] = useState([]);
   const handleSearchChange = (e) => {};
@@ -42,7 +46,16 @@ const Feed = () => {
           className="search_input peer"
         />
       </form>
-      <PromptCardList data={posts} handleTagClick={() => {}} />
+      <PromptCardList
+        data={posts}
+        handleProfileclick={(id, name) => {
+          console.log(id);
+          router.push(`/profile/${id}?name=${name}`);
+        }}
+        handleTagClick={(tag) => {
+          setSearchText(tag);
+        }}
+      />
     </section>
   );
 };

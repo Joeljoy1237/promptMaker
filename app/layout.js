@@ -9,14 +9,15 @@ export const metadata = {
 };
 
 const RootLayout = ({ children }) => (
-  <html lang='en'>
+  <html lang="en">
+    <link rel="icon" type="image/x-icon" href="/assets/icons/logo.ico"></link>
     <body>
       <Provider>
-        <div className='main'>
-          <div className='gradient' />
+        <div className="main">
+          <div className="gradient" />
         </div>
 
-        <main className='app'>
+        <main className="app">
           <Nav />
           {children}
         </main>
