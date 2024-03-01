@@ -26,21 +26,16 @@ const Feed = () => {
   const [filter, setFilter] = useState([]);
 
   const handleSearchChange = (val) => {
-    if (val == "") {
-      setFilter(posts);
-      return;
-    }
+    var tempVal = val.toLowerCase();
     setFilter(
       posts.filter(
         (item) =>
-          item.creator.username.includes(val) ||
-          item.tag.includes(val) ||
-          item.prompt.includes(val)
+          item.creator.username.toLowerCase().includes(tempVal) ||
+          item.tag.toLowerCase().includes(tempVal) ||
+          item.prompt.toLowerCase().includes(tempVal)
       )
     );
-    console.log(filter);
   };
-
   useEffect(() => {
     const fetchPosts = async () => {
       const response = await fetch("/api/prompt");
