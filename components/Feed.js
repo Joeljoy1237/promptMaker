@@ -25,10 +25,6 @@ const Feed = () => {
   const [posts, setPosts] = useState([]);
   const [filter, setFilter] = useState([]);
 
-  console.log("====================================");
-  console.log(posts);
-  console.log("====================================");
-
   const handleSearchChange = (val) => {
     var tempVal = val.toLowerCase();
     setFilter(
@@ -46,6 +42,9 @@ const Feed = () => {
       const data = await response.json();
       setPosts(data);
       setFilter(data);
+      console.log("====================================");
+      console.log(data);
+      console.log("====================================");
     };
     fetchPosts();
   }, []);
