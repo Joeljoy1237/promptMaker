@@ -38,13 +38,10 @@ const Feed = () => {
   };
   useEffect(() => {
     const fetchPosts = async () => {
-      const response = await fetch("/api/prompt", { cache: "no-store" });
+      const response = await fetch("/api/prompt/all", { cache: "no-store" });
       const data = await response.json();
       setPosts(data);
       setFilter(data);
-      console.log("====================================");
-      console.log(data);
-      console.log("====================================");
     };
     fetchPosts();
   }, []);
