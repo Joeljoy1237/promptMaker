@@ -55,6 +55,7 @@ const PromptCard = ({
                 : "/assets/icons/copy.svg"
             }
             width={12}
+            alt="copy_btn"
             height={12}
           />
         </div>

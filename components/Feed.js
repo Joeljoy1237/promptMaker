@@ -38,7 +38,7 @@ const Feed = () => {
   };
   useEffect(() => {
     const fetchPosts = async () => {
-      const response = await fetch("/api/prompt/all", { cache: "no-store" });
+      const response = await fetch("/api/prompt/all", { cache: "no-cache" });
       const data = await response.json();
       setPosts(data);
       setFilter(data);
@@ -66,7 +66,6 @@ const Feed = () => {
       <PromptCardList
         data={filter}
         handleProfileclick={(id, name) => {
-          console.log(id);
           router.push(`/profile/${id}?name=${name}`);
         }}
         handleTagClick={(tag) => {
