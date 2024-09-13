@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 const PromptCard = ({
   post,
@@ -15,6 +15,7 @@ const PromptCard = ({
   const [copied, setCopied] = useState("");
   const { data: session } = useSession();
   const pathName = usePathname();
+
   const handleCopy = () => {
     setCopied(post.prompt);
     navigator.clipboard.writeText(post.prompt);
@@ -22,21 +23,21 @@ const PromptCard = ({
   };
 
   return (
-    <div className="prompt_card">
-      <div className="flex justify-between items-start gap-5">
+    <div className="prompt_card bg-white shadow-md rounded-lg p-5 m-3 max-w-sm w-full md:max-w-md lg:max-w-lg transition duration-300 ease-in-out transform hover:scale-105">
+      <div className="flex flex-col sm:flex-row justify-between items-start gap-4">
         <div
           onClick={() => {
             handleProfileclick &&
               handleProfileclick(post.creator._id, post.creator.username);
           }}
-          className="flex-1 flex justify-start items-start gap-3 cursor-pointer"
+          className="flex items-start gap-3 cursor-pointer"
         >
           <Image
             src={post.creator.image}
             alt="user_name"
             width={40}
             height={40}
-            className="rounded-full object-contain"
+            className="rounded-full object-cover"
           />
           <div className="flex flex-col">
             <h3 className="font-satoshi font-semibold text-gray-900">
@@ -47,7 +48,7 @@ const PromptCard = ({
             </p>
           </div>
         </div>
-        <div className="copy_btn" onClick={handleCopy}>
+        <div className="copy_btn flex-shrink-0" onClick={handleCopy}>
           <Image
             src={
               copied === post.prompt
@@ -70,7 +71,7 @@ const PromptCard = ({
         {post.tag}
       </p>
       {session?.user.id === post.creator._id && pathName === "/profile" && (
-        <div className="mt-5 flex-center gap-4 border-t border-gray-100 pt-3">
+        <div className="mt-5 flex justify-center sm:justify-start gap-4 border-t border-gray-100 pt-3">
           <p
             className="font-inter text-sm green_gradient cursor-pointer"
             onClick={handleEdit}
